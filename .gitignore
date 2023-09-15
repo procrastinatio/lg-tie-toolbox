@@ -3,12 +3,8 @@
 # Learn more about .gitignore:
 #     https://www.atlassian.com/git/tutorials/saving-changes/gitignore
 
-# Node artifact files
-node_modules/
-dist/
 
-# Compiled Java class files
-*.class
+src/python/temp/
 
 # Compiled Python bytecode
 *.py[cod]
@@ -16,12 +12,6 @@ dist/
 # Log files
 *.log
 
-# Package files
-*.jar
-
-# Maven
-target/
-dist/
 
 # JetBrains IDE
 .idea/

@@ -1,29 +1,12 @@
-# README #
+# TIE #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+Python module for "Trace Information Extraction" (TIE) method
 
-### What is this repository for? ###
+## Install ##
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+### Requirements ###
 
-### How do I get set up? ###
+* PyQt or WxPython
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+PyQt/PySide or wxPython
+        installed.

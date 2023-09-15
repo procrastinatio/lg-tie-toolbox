@@ -13,6 +13,7 @@ rasterio = "*"
 scipy = "*"
 shapely = "*"
 scikit-image = "*"
+PyQt5 = "*"
 
 [dev-packages]
 

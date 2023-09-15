@@ -1,4 +1,4 @@
-# -*à-- coding: utf-8 -*-
+# -*--- coding: utf-8 -*-
 """
 Created on Tue Apr 13 11:04:48 2021
 @author: Anna Rauch
@@ -9,7 +9,8 @@ TIE-analysis.
 """
 
 import glob
-from pathlib import Path
+from pathlib import Path, PurePath
+import tempfile
 
 import geopandas as gpd
 import numpy as np
@@ -266,7 +267,7 @@ def loadGeocover(sheet, geoc_path, language="de"):
     path_whole = geoc_path + "/GC-V-V2-" + str(sheet) + "/Data/SHP/" + language
     BED_path = Path(path_whole + "/Bedrock_PLG.shp")
     TEC_path = Path(path_whole + "/Tectonic_Boundaries_L.shp")
-    OM_path = Path(path_whole + "/Planar_structures_PT.shp")
+    OM_path = Path(path_whole + "/Planar_Structures_PT.shp")
 
     BED = gpd.read_file(BED_path)
     TEC = gpd.read_file(TEC_path)
@@ -305,7 +306,10 @@ def loadLKdem(sheet, path_alti3D_folder):
                      "transform": out_trans})
 
     # FIXME: No static paths inside script body
-    out_fp = Path("D:/TIE/python/temp/swiss_" + str(sheet) + "_merged.tif")
+    tmp_dir = Path(tempfile.mkdtemp())
+    # out_fp = Path("D:/TIE/python/temp/swiss_" + str(sheet) + "_merged.tif")
+    out_fp = PurePath(tmp_dir, str(sheet) + "_merged.tif")
+    print(out_fp)
     with rst.open(out_fp, "w", **out_meta) as dest:
         dest.write(mosaic)
 

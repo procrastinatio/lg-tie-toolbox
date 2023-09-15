@@ -1,0 +1,1071 @@
+INTERLIS 2.3;
+/** DATA MODEL GEOCOVER - DATENMODELL GEOLOGIE - MODÈLE DE DONNÉES GÉOLOGIQUES - MODELLO DI DATI GEOLOGICI
+* minimal geodata model, topic: GEOCOVER, provider: swisstopo / SWISS GEOLOGICAL SURVEY
+*/
+!!Version | Who | Modification
+!!-------------------------------------------------------------------------------------------
+!! 2017-09-18; bei; changed modelname from DM_Geology_V2_1_Catalogues to GEOCOVER_Catalogues_V2_2, changed TOPIC from Catalog_GC_ROCK_BODIES to Catalog_GEOCOVER
+!! 2017-09-18; bei; class name GC_LITSTRAT_BED_CD changed to GC_LITSTRAT_BED
+!!@ Contact = info@swisstopo.ch
+!!@ IDGeoIV = "46.1,46.2,46.4,46.9"
+MODEL GEOCOVER_Catalogues_V2_2 (en) AT "http://models.geo.admin.ch/Swisstopo/" VERSION "2017-09-18" = 
+  IMPORTS CatalogueObjects_V1,LocalisationCH_V1;
+  TOPIC Catalog_GEOCOVER =
+    CLASS GC_EX_GEO_PLG_AEXP_TARG_MAT_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_EX_GEO_PLG_AEXP_TARG_MAT_CD;
+    STRUCTURE GC_EX_GEO_PLG_AEXP_TARG_MAT_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_EX_GEO_PLG_AEXP_TARG_MAT_CD;
+    END GC_EX_GEO_PLG_AEXP_TARG_MAT_CD_CatalogueReference;
+    CLASS GC_PNT_MFOL_FOLD_TYP_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_PNT_MFOL_FOLD_TYP_CD;
+    STRUCTURE GC_PNT_MFOL_FOLD_TYP_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_PNT_MFOL_FOLD_TYP_CD;
+    END GC_PNT_MFOL_FOLD_TYP_CD_CatalogueReference;
+    CLASS GC_PNT_LTYP_STRATI_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_PNT_LTYP_STRATI_CD;
+    STRUCTURE GC_PNT_LTYP_STRATI_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_PNT_LTYP_STRATI_CD;
+    END GC_PNT_LTYP_STRATI_CD_CatalogueReference;
+    CLASS GC_PNT_PSLO_TYPE_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_PNT_PSLO_TYPE_CD;
+    STRUCTURE GC_PNT_PSLO_TYPE_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_PNT_PSLO_TYPE_CD;
+    END GC_PNT_PSLO_TYPE_CD_CatalogueReference;
+    CLASS GC_LIN_GGLA_MORAI_MO_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_LIN_GGLA_MORAI_MO_CD;
+    STRUCTURE GC_LIN_GGLA_MORAI_MO_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_LIN_GGLA_MORAI_MO_CD;
+    END GC_LIN_GGLA_MORAI_MO_CD_CatalogueReference;
+    CLASS GC_LITSTRAT_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_LITSTRAT_CD;
+    STRUCTURE GC_LITSTRAT_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_LITSTRAT_CD;
+    END GC_LITSTRAT_CD_CatalogueReference;
+    CLASS GC_PNT_RUNC_ROCK_SPE_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_PNT_RUNC_ROCK_SPE_CD;
+    STRUCTURE GC_PNT_RUNC_ROCK_SPE_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_PNT_RUNC_ROCK_SPE_CD;
+    END GC_PNT_RUNC_ROCK_SPE_CD_CatalogueReference;
+    CLASS GC_LIN_TTEC_STATUS_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_LIN_TTEC_STATUS_CD;
+    STRUCTURE GC_LIN_TTEC_STATUS_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_LIN_TTEC_STATUS_CD;
+    END GC_LIN_TTEC_STATUS_CD_CatalogueReference;
+    CLASS GC_PNT_MPLA_POLARITY_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_PNT_MPLA_POLARITY_CD;
+    STRUCTURE GC_PNT_MPLA_POLARITY_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_PNT_MPLA_POLARITY_CD;
+    END GC_PNT_MPLA_POLARITY_CD_CatalogueReference;
+    CLASS GC_BEDDING_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_BEDDING_CD;
+    STRUCTURE GC_BEDDING_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_BEDDING_CD;
+    END GC_BEDDING_CD_CatalogueReference;
+    CLASS GC_AFFINITY_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_AFFINITY_CD;
+    STRUCTURE GC_AFFINITY_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_AFFINITY_CD;
+    END GC_AFFINITY_CD_CatalogueReference;
+    CLASS GC_LIN_PCOB_TYPE_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_LIN_PCOB_TYPE_CD;
+    STRUCTURE GC_LIN_PCOB_TYPE_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_LIN_PCOB_TYPE_CD;
+    END GC_LIN_PCOB_TYPE_CD_CatalogueReference;
+    CLASS GC_TECTO_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_TECTO_CD;
+    STRUCTURE GC_TECTO_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_TECTO_CD;
+    END GC_TECTO_CD_CatalogueReference;
+    CLASS GC_LITSTRAT_UNCO_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_LITSTRAT_UNCO_CD;
+    STRUCTURE GC_LITSTRAT_UNCO_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_LITSTRAT_UNCO_CD;
+    END GC_LITSTRAT_UNCO_CD_CatalogueReference;
+    CLASS GC_SECO_COM_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_SECO_COM_CD;
+    STRUCTURE GC_SECO_COM_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_SECO_COM_CD;
+    END GC_SECO_COM_CD_CatalogueReference;
+    CLASS GC_LIN_LPRO_CONG_SPE_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_LIN_LPRO_CONG_SPE_CD;
+    STRUCTURE GC_LIN_LPRO_CONG_SPE_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_LIN_LPRO_CONG_SPE_CD;
+    END GC_LIN_LPRO_CONG_SPE_CD_CatalogueReference;
+    CLASS GC_PNT_MFOL_FOLD_FOR_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_PNT_MFOL_FOLD_FOR_CD;
+    STRUCTURE GC_PNT_MFOL_FOLD_FOR_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_PNT_MFOL_FOLD_FOR_CD;
+    END GC_PNT_MFOL_FOLD_FOR_CD_CatalogueReference;
+    CLASS GC_SURF_TDEF_TYPE_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_SURF_TDEF_TYPE_CD;
+    STRUCTURE GC_SURF_TDEF_TYPE_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_SURF_TDEF_TYPE_CD;
+    END GC_SURF_TDEF_TYPE_CD_CatalogueReference;
+    CLASS GC_PNT_TDEF_FOLD_TYP_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_PNT_TDEF_FOLD_TYP_CD;
+    STRUCTURE GC_PNT_TDEF_FOLD_TYP_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_PNT_TDEF_FOLD_TYP_CD;
+    END GC_PNT_TDEF_FOLD_TYP_CD_CatalogueReference;
+    CLASS GC_LIN_GALL_AGE_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_LIN_GALL_AGE_CD;
+    STRUCTURE GC_LIN_GALL_AGE_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_LIN_GALL_AGE_CD;
+    END GC_LIN_GALL_AGE_CD_CatalogueReference;
+    CLASS GC_PNT_ABOR_DRILL_MO_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_PNT_ABOR_DRILL_MO_CD;
+    STRUCTURE GC_PNT_ABOR_DRILL_MO_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_PNT_ABOR_DRILL_MO_CD;
+    END GC_PNT_ABOR_DRILL_MO_CD_CatalogueReference;
+    CLASS GC_AARC_EPOCH_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_AARC_EPOCH_CD;
+    STRUCTURE GC_AARC_EPOCH_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_AARC_EPOCH_CD;
+    END GC_AARC_EPOCH_CD_CatalogueReference;
+    CLASS GC_LIN_TTEC_ACTIVITY_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_LIN_TTEC_ACTIVITY_CD;
+    STRUCTURE GC_LIN_TTEC_ACTIVITY_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_LIN_TTEC_ACTIVITY_CD;
+    END GC_LIN_TTEC_ACTIVITY_CD_CatalogueReference;
+    CLASS GC_PNT_ABOR_TARG_MAT_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_PNT_ABOR_TARG_MAT_CD;
+    STRUCTURE GC_PNT_ABOR_TARG_MAT_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_PNT_ABOR_TARG_MAT_CD;
+    END GC_PNT_ABOR_TARG_MAT_CD_CatalogueReference;
+    CLASS GC_GRAIN_SI_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_GRAIN_SI_CD;
+    STRUCTURE GC_GRAIN_SI_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_GRAIN_SI_CD;
+    END GC_GRAIN_SI_CD_CatalogueReference;
+    CLASS GC_LIN_PCOH_WA_TABLE_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_LIN_PCOH_WA_TABLE_CD;
+    STRUCTURE GC_LIN_PCOH_WA_TABLE_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_LIN_PCOH_WA_TABLE_CD;
+    END GC_LIN_PCOH_WA_TABLE_CD_CatalogueReference;
+    CLASS GC_PNT_TDEF_FOLD_FOR_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_PNT_TDEF_FOLD_FOR_CD;
+    STRUCTURE GC_PNT_TDEF_FOLD_FOR_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_PNT_TDEF_FOLD_FOR_CD;
+    END GC_PNT_TDEF_FOLD_FOR_CD_CatalogueReference;
+    CLASS GC_PNT_LANO_TYPE_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_PNT_LANO_TYPE_CD;
+    STRUCTURE GC_PNT_LANO_TYPE_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_PNT_LANO_TYPE_CD;
+    END GC_PNT_LANO_TYPE_CD_CatalogueReference;
+    CLASS GC_EX_GEO_PNT_AEXP_TARG_MAT_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_EX_GEO_PNT_AEXP_TARG_MAT_CD;
+    STRUCTURE GC_EX_GEO_PNT_AEXP_TARG_MAT_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_EX_GEO_PNT_AEXP_TARG_MAT_CD;
+    END GC_EX_GEO_PNT_AEXP_TARG_MAT_CD_CatalogueReference;
+    CLASS GC_LIN_TTEC_META_STA_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_LIN_TTEC_META_STA_CD;
+    STRUCTURE GC_LIN_TTEC_META_STA_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_LIN_TTEC_META_STA_CD;
+    END GC_LIN_TTEC_META_STA_CD_CatalogueReference;
+    CLASS GC_FOSS_LFOS_DAT_METH_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_FOSS_LFOS_DAT_METH_CD;
+    STRUCTURE GC_FOSS_LFOS_DAT_METH_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_FOSS_LFOS_DAT_METH_CD;
+    END GC_FOSS_LFOS_DAT_METH_CD_CatalogueReference;
+    CLASS GC_SURF_TDEF_GEN_RELA_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_SURF_TDEF_GEN_RELA_CD;
+    STRUCTURE GC_SURF_TDEF_GEN_RELA_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_SURF_TDEF_GEN_RELA_CD;
+    END GC_SURF_TDEF_GEN_RELA_CD_CatalogueReference;
+    CLASS GC_LIN_AEXP_STATUS_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_LIN_AEXP_STATUS_CD;
+    STRUCTURE GC_LIN_AEXP_STATUS_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_LIN_AEXP_STATUS_CD;
+    END GC_LIN_AEXP_STATUS_CD_CatalogueReference;
+    CLASS GC_PNT_RUNC_STATUS_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_PNT_RUNC_STATUS_CD;
+    STRUCTURE GC_PNT_RUNC_STATUS_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_PNT_RUNC_STATUS_CD;
+    END GC_PNT_RUNC_STATUS_CD_CatalogueReference;
+    CLASS GC_PNT_HSUR_FLOW_CON_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_PNT_HSUR_FLOW_CON_CD;
+    STRUCTURE GC_PNT_HSUR_FLOW_CON_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_PNT_HSUR_FLOW_CON_CD;
+    END GC_PNT_HSUR_FLOW_CON_CD_CatalogueReference;
+    CLASS GC_PNT_HCON_EPOCH_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_PNT_HCON_EPOCH_CD;
+    STRUCTURE GC_PNT_HCON_EPOCH_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_PNT_HCON_EPOCH_CD;
+    END GC_PNT_HCON_EPOCH_CD_CatalogueReference;
+    CLASS GC_BOOLEAN_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_BOOLEAN_CD;
+    STRUCTURE GC_BOOLEAN_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_BOOLEAN_CD;
+    END GC_BOOLEAN_CD_CatalogueReference;
+    CLASS GC_PNT_HSUR_COMBI_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_PNT_HSUR_COMBI_CD;
+    STRUCTURE GC_PNT_HSUR_COMBI_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_PNT_HSUR_COMBI_CD;
+    END GC_PNT_HSUR_COMBI_CD_CatalogueReference;
+    CLASS GC_PNT_HSUR_STATUS_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_PNT_HSUR_STATUS_CD;
+    STRUCTURE GC_PNT_HSUR_STATUS_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_PNT_HSUR_STATUS_CD;
+    END GC_PNT_HSUR_STATUS_CD_CatalogueReference;
+    CLASS GC_PNT_LRES_STATUS_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_PNT_LRES_STATUS_CD;
+    STRUCTURE GC_PNT_LRES_STATUS_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_PNT_LRES_STATUS_CD;
+    END GC_PNT_LRES_STATUS_CD_CatalogueReference;
+    CLASS GC_MAIN_COM_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_MAIN_COM_CD;
+    STRUCTURE GC_MAIN_COM_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_MAIN_COM_CD;
+    END GC_MAIN_COM_CD_CatalogueReference;
+    CLASS GC_EX_GEO_PLG_AEXP_STATUS_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_EX_GEO_PLG_AEXP_STATUS_CD;
+    STRUCTURE GC_EX_GEO_PLG_AEXP_STATUS_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_EX_GEO_PLG_AEXP_STATUS_CD;
+    END GC_EX_GEO_PLG_AEXP_STATUS_CD_CatalogueReference;
+    CLASS GC_LIN_LPRO_NAME_HORIZ_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_LIN_LPRO_NAME_HORIZ_CD;
+    STRUCTURE GC_LIN_LPRO_NAME_HORIZ_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_LIN_LPRO_NAME_HORIZ_CD;
+    END GC_LIN_LPRO_NAME_HORIZ_CD_CatalogueReference;
+    CLASS GC_LIN_GGLA_GLAC_TYP_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_LIN_GGLA_GLAC_TYP_CD;
+    STRUCTURE GC_LIN_GGLA_GLAC_TYP_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_LIN_GGLA_GLAC_TYP_CD;
+    END GC_LIN_GGLA_GLAC_TYP_CD_CatalogueReference;
+    CLASS GC_LITHO_UNCO_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_LITHO_UNCO_CD;
+    STRUCTURE GC_LITHO_UNCO_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_LITHO_UNCO_CD;
+    END GC_LITHO_UNCO_CD_CatalogueReference;
+    CLASS GC_PNT_MPLA_PHASE_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_PNT_MPLA_PHASE_CD;
+    STRUCTURE GC_PNT_MPLA_PHASE_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_PNT_MPLA_PHASE_CD;
+    END GC_PNT_MPLA_PHASE_CD_CatalogueReference;
+    CLASS GC_MINERAL_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_MINERAL_CD;
+    STRUCTURE GC_MINERAL_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_MINERAL_CD;
+    END GC_MINERAL_CD_CatalogueReference;
+    CLASS GC_LIN_LGEO_STATUS_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_LIN_LGEO_STATUS_CD;
+    STRUCTURE GC_LIN_LGEO_STATUS_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_LIN_LGEO_STATUS_CD;
+    END GC_LIN_LGEO_STATUS_CD_CatalogueReference;
+    CLASS GC_UN_DEP_RUNC_MORPHOLO_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_UN_DEP_RUNC_MORPHOLO_CD;
+    STRUCTURE GC_UN_DEP_RUNC_MORPHOLO_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_UN_DEP_RUNC_MORPHOLO_CD;
+    END GC_UN_DEP_RUNC_MORPHOLO_CD_CatalogueReference;
+    CLASS GC_LIN_GGLA_QUAT_STR_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_LIN_GGLA_QUAT_STR_CD;
+    STRUCTURE GC_LIN_GGLA_QUAT_STR_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_LIN_GGLA_QUAT_STR_CD;
+    END GC_LIN_GGLA_QUAT_STR_CD_CatalogueReference;
+    CLASS GC_SEDI_TEX_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_SEDI_TEX_CD;
+    STRUCTURE GC_SEDI_TEX_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_SEDI_TEX_CD;
+    END GC_SEDI_TEX_CD_CatalogueReference;
+    CLASS GC_REASON_FOR_CHANGE_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_REASON_FOR_CHANGE_CD;
+    STRUCTURE GC_REASON_FOR_CHANGE_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_REASON_FOR_CHANGE_CD;
+    END GC_REASON_FOR_CHANGE_CD_CatalogueReference;
+    CLASS GC_LITSTRAT_BED_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_LITSTRAT_BED_CD;
+    STRUCTURE GC_LITSTRAT_BED_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_LITSTRAT_BED_CD;
+    END GC_LITSTRAT_BED_CD_CatalogueReference;
+    CLASS GC_HARMOS_REV_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_HARMOS_REV_CD;
+    STRUCTURE GC_HARMOS_REV_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_HARMOS_REV_CD;
+    END GC_HARMOS_REV_CD_CatalogueReference;
+    CLASS GC_PNT_ABOR_MAIN_TAR_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_PNT_ABOR_MAIN_TAR_CD;
+    STRUCTURE GC_PNT_ABOR_MAIN_TAR_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_PNT_ABOR_MAIN_TAR_CD;
+    END GC_PNT_ABOR_MAIN_TAR_CD_CatalogueReference;
+    CLASS GC_ORIGIN_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_ORIGIN_CD;
+    STRUCTURE GC_ORIGIN_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_ORIGIN_CD;
+    END GC_ORIGIN_CD_CatalogueReference;
+    CLASS GC_CHRONO_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_CHRONO_CD;
+    STRUCTURE GC_CHRONO_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_CHRONO_CD;
+    END GC_CHRONO_CD_CatalogueReference;
+    CLASS GC_BOND_MAT_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_BOND_MAT_CD;
+    STRUCTURE GC_BOND_MAT_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_BOND_MAT_CD;
+    END GC_BOND_MAT_CD_CatalogueReference;
+    CLASS GC_AARC_AGE_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_AARC_AGE_CD;
+    STRUCTURE GC_AARC_AGE_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_AARC_AGE_CD;
+    END GC_AARC_AGE_CD_CatalogueReference;
+    CLASS GC_PNT_HCON_STATUS_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_PNT_HCON_STATUS_CD;
+    STRUCTURE GC_PNT_HCON_STATUS_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_PNT_HCON_STATUS_CD;
+    END GC_PNT_HCON_STATUS_CD_CatalogueReference;
+    CLASS GC_META_STR_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_META_STR_CD;
+    STRUCTURE GC_META_STR_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_META_STR_CD;
+    END GC_META_STR_CD_CatalogueReference;
+    CLASS GC_FOSS_LFOS_STATUS_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_FOSS_LFOS_STATUS_CD;
+    STRUCTURE GC_FOSS_LFOS_STATUS_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_FOSS_LFOS_STATUS_CD;
+    END GC_FOSS_LFOS_STATUS_CD_CatalogueReference;
+    CLASS GC_LIN_HPAL_REL_AGE_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_LIN_HPAL_REL_AGE_CD;
+    STRUCTURE GC_LIN_HPAL_REL_AGE_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_LIN_HPAL_REL_AGE_CD;
+    END GC_LIN_HPAL_REL_AGE_CD_CatalogueReference;
+    CLASS GC_LITHO_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_LITHO_CD;
+    STRUCTURE GC_LITHO_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_LITHO_CD;
+    END GC_LITHO_CD_CatalogueReference;
+    CLASS GC_PNT_HSUR_DIS_LOCA_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_PNT_HSUR_DIS_LOCA_CD;
+    STRUCTURE GC_PNT_HSUR_DIS_LOCA_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_PNT_HSUR_DIS_LOCA_CD;
+    END GC_PNT_HSUR_DIS_LOCA_CD_CatalogueReference;
+    CLASS GC_LIN_GGLA_ICE_M_P_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_LIN_GGLA_ICE_M_P_CD;
+    STRUCTURE GC_LIN_GGLA_ICE_M_P_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_LIN_GGLA_ICE_M_P_CD;
+    END GC_LIN_GGLA_ICE_M_P_CD_CatalogueReference;
+    CLASS GC_UN_DEP_RUNC_STRUCTUR_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_UN_DEP_RUNC_STRUCTUR_CD;
+    STRUCTURE GC_UN_DEP_RUNC_STRUCTUR_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_UN_DEP_RUNC_STRUCTUR_CD;
+    END GC_UN_DEP_RUNC_STRUCTUR_CD_CatalogueReference;
+    CLASS GC_LIN_TTEC_FAULT_MO_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_LIN_TTEC_FAULT_MO_CD;
+    STRUCTURE GC_LIN_TTEC_FAULT_MO_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_LIN_TTEC_FAULT_MO_CD;
+    END GC_LIN_TTEC_FAULT_MO_CD_CatalogueReference;
+    CLASS GC_EX_GEO_PNT_AEXP_STATUS_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_EX_GEO_PNT_AEXP_STATUS_CD;
+    STRUCTURE GC_EX_GEO_PNT_AEXP_STATUS_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_EX_GEO_PNT_AEXP_STATUS_CD;
+    END GC_EX_GEO_PNT_AEXP_STATUS_CD_CatalogueReference;
+    CLASS GC_LIN_TTEC_VERTI_MO_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_LIN_TTEC_VERTI_MO_CD;
+    STRUCTURE GC_LIN_TTEC_VERTI_MO_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_LIN_TTEC_VERTI_MO_CD;
+    END GC_LIN_TTEC_VERTI_MO_CD_CatalogueReference;
+    CLASS GC_SURF_GINB_MAIN_MOV_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_SURF_GINB_MAIN_MOV_CD;
+    STRUCTURE GC_SURF_GINB_MAIN_MOV_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_SURF_GINB_MAIN_MOV_CD;
+    END GC_SURF_GINB_MAIN_MOV_CD_CatalogueReference;
+    CLASS GC_LIN_HCON_COMBI_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_LIN_HCON_COMBI_CD;
+    STRUCTURE GC_LIN_HCON_COMBI_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_LIN_HCON_COMBI_CD;
+    END GC_LIN_HCON_COMBI_CD_CatalogueReference;
+    CLASS GC_PNT_AARC_TYPE_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_PNT_AARC_TYPE_CD;
+    STRUCTURE GC_PNT_AARC_TYPE_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_PNT_AARC_TYPE_CD;
+    END GC_PNT_AARC_TYPE_CD_CatalogueReference;
+    CLASS GC_AARC_PERIOD_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_AARC_PERIOD_CD;
+    STRUCTURE GC_AARC_PERIOD_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_AARC_PERIOD_CD;
+    END GC_AARC_PERIOD_CD_CatalogueReference;
+    CLASS GC_UN_DEP_RUNC_GLAC_TYP_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_UN_DEP_RUNC_GLAC_TYP_CD;
+    STRUCTURE GC_UN_DEP_RUNC_GLAC_TYP_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_UN_DEP_RUNC_GLAC_TYP_CD;
+    END GC_UN_DEP_RUNC_GLAC_TYP_CD_CatalogueReference;
+    CLASS GC_UN_DEP_RUNC_THIN_COV_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_UN_DEP_RUNC_THIN_COV_CD;
+    STRUCTURE GC_UN_DEP_RUNC_THIN_COV_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_UN_DEP_RUNC_THIN_COV_CD;
+    END GC_UN_DEP_RUNC_THIN_COV_CD_CatalogueReference;
+    CLASS GC_PNT_HSUR_TYPE_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_PNT_HSUR_TYPE_CD;
+    STRUCTURE GC_PNT_HSUR_TYPE_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_PNT_HSUR_TYPE_CD;
+    END GC_PNT_HSUR_TYPE_CD_CatalogueReference;
+    CLASS GC_PNT_LRES_MATERIAL_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_PNT_LRES_MATERIAL_CD;
+    STRUCTURE GC_PNT_LRES_MATERIAL_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_PNT_LRES_MATERIAL_CD;
+    END GC_PNT_LRES_MATERIAL_CD_CatalogueReference;
+    CLASS GC_LIN_HSUB_COMBI_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_LIN_HSUB_COMBI_CD;
+    STRUCTURE GC_LIN_HSUB_COMBI_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_LIN_HSUB_COMBI_CD;
+    END GC_LIN_HSUB_COMBI_CD_CatalogueReference;
+    CLASS GC_SEDI_STR_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_SEDI_STR_CD;
+    STRUCTURE GC_SEDI_STR_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_SEDI_STR_CD;
+    END GC_SEDI_STR_CD_CatalogueReference;
+    CLASS GC_PNT_MFOL_PHASE_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_PNT_MFOL_PHASE_CD;
+    STRUCTURE GC_PNT_MFOL_PHASE_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_PNT_MFOL_PHASE_CD;
+    END GC_PNT_MFOL_PHASE_CD_CatalogueReference;
+    CLASS GC_LIN_PCOH_CONFINE_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_LIN_PCOH_CONFINE_CD;
+    STRUCTURE GC_LIN_PCOH_CONFINE_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_LIN_PCOH_CONFINE_CD;
+    END GC_LIN_PCOH_CONFINE_CD_CatalogueReference;
+    CLASS GC_FOSS_LFOS_DIVISION_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_FOSS_LFOS_DIVISION_CD;
+    STRUCTURE GC_FOSS_LFOS_DIVISION_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_FOSS_LFOS_DIVISION_CD;
+    END GC_FOSS_LFOS_DIVISION_CD_CatalogueReference;
+    CLASS GC_MONTH_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_MONTH_CD;
+    STRUCTURE GC_MONTH_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_MONTH_CD;
+    END GC_MONTH_CD_CatalogueReference;
+    CLASS GC_IGNE_TEX_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_IGNE_TEX_CD;
+    STRUCTURE GC_IGNE_TEX_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_IGNE_TEX_CD;
+    END GC_IGNE_TEX_CD_CatalogueReference;
+    CLASS GC_PNT_RUNC_ROCK_TYP_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_PNT_RUNC_ROCK_TYP_CD;
+    STRUCTURE GC_PNT_RUNC_ROCK_TYP_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_PNT_RUNC_ROCK_TYP_CD;
+    END GC_PNT_RUNC_ROCK_TYP_CD_CatalogueReference;
+    CLASS GC_BEDR_RBED_FM_HOMOG_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_BEDR_RBED_FM_HOMOG_CD;
+    STRUCTURE GC_BEDR_RBED_FM_HOMOG_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_BEDR_RBED_FM_HOMOG_CD;
+    END GC_BEDR_RBED_FM_HOMOG_CD_CatalogueReference;
+    CLASS GC_LIN_TTEC_HORIZ_MO_CD
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_LIN_TTEC_HORIZ_MO_CD;
+    STRUCTURE GC_LIN_TTEC_HORIZ_MO_CD_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_LIN_TTEC_HORIZ_MO_CD;
+    END GC_LIN_TTEC_HORIZ_MO_CD_CatalogueReference;
+    CLASS GC_SURFACES_KIND
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_SURFACES_KIND;
+    STRUCTURE GC_SURFACES_KIND_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_SURFACES_KIND;
+    END GC_SURFACES_KIND_CatalogueReference;
+    CLASS GC_BEDROCK_KIND
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_BEDROCK_KIND;
+    STRUCTURE GC_BEDROCK_KIND_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_BEDROCK_KIND;
+    END GC_BEDROCK_KIND_CatalogueReference;
+    CLASS GC_UNCO_DESPOSIT_KIND
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_UNCO_DESPOSIT_KIND;
+    STRUCTURE GC_UNCO_DESPOSIT_KIND_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_UNCO_DESPOSIT_KIND;
+    END GC_UNCO_DESPOSIT_KIND_CatalogueReference;
+    CLASS GC_EXPLOIT_GEOMAT_PT_KIND
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_EXPLOIT_GEOMAT_PT_KIND;
+    STRUCTURE GC_EXPLOIT_GEOMAT_PT_KIND_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_EXPLOIT_GEOMAT_PT_KIND;
+    END GC_EXPLOIT_GEOMAT_PT_KIND_CatalogueReference;
+    CLASS GC_FOSSILS_KIND
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_FOSSILS_KIND;
+    STRUCTURE GC_FOSSILS_KIND_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_FOSSILS_KIND;
+    END GC_FOSSILS_KIND_CatalogueReference;
+    CLASS GC_POINT_OBJECTS_KIND
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_POINT_OBJECTS_KIND;
+    STRUCTURE GC_POINT_OBJECTS_KIND_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_POINT_OBJECTS_KIND;
+    END GC_POINT_OBJECTS_KIND_CatalogueReference;
+    CLASS GC_LINEAR_OBJECTS_KIND
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_LINEAR_OBJECTS_KIND;
+    STRUCTURE GC_LINEAR_OBJECTS_KIND_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_LINEAR_OBJECTS_KIND;
+    END GC_LINEAR_OBJECTS_KIND_CatalogueReference;
+    CLASS GC_EXPLOIT_GEOMAT_PLG_KIND
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      CODE : TEXT*255;
+      DESCRIPTION : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE CODE;
+    END GC_EXPLOIT_GEOMAT_PLG_KIND;
+    STRUCTURE GC_EXPLOIT_GEOMAT_PLG_KIND_CatalogueReference
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      /** Referenz zum Katalog. */
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) GC_EXPLOIT_GEOMAT_PLG_KIND;
+    END GC_EXPLOIT_GEOMAT_PLG_KIND_CatalogueReference;
+  END Catalog_GEOCOVER;
+END GEOCOVER_Catalogues_V2_2.

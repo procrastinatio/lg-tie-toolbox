@@ -1,0 +1,384 @@
+INTERLIS 2.3;
+/** DATA MODEL GEOLOGY - DATENMODELL GEOLOGIE - MODÈLE DE DONNÉES GÉOLOGIQUES - MODELLO DI DATI GEOLOGICI
+* minimal geodata model, topic: GEOCOVER, provider: swisstopo / SWISS GEOLOGICAL SURVEY
+*/
+!!Version | Who | Modification
+!!-------------------------------------------------------------------------------------------
+!!
+!!@ Contact = info@swisstopo.ch
+!!@ IDGeoIV = "46.1,46.2,46.4,46.9"
+MODEL GEOCOVER_LV95_V3_0 (en) AT "http://models.geo.admin.ch/Swisstopo/" VERSION "2017-10-09" = 
+  IMPORTS GeometryCHLV95_V1,GEOCOVER_Catalogues_V2_2;
+  DOMAIN
+    ShortInteger = -32768  .. 32767;
+    LongInteger  = -2147483640 .. 2147483647;
+    Double = -0.22E309 .. 0.18E309;
+    Single = -0.34E39 .. 0.12E39;
+
+  TOPIC GEOCOVER =
+  DEPENDS ON GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER;
+    CLASS GC_SURFACES =
+      UUID : MANDATORY INTERLIS.UUIDOID;
+      KIND : MANDATORY GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_SURFACES_KIND_CatalogueReference; 
+      MORE_INFO : TEXT*255;
+      SYMBOL : TEXT*10;
+      AARC_EPOCH : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_AARC_EPOCH_CD_CatalogueReference;
+      AARC_PERIOD : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_AARC_PERIOD_CD_CatalogueReference;
+      AARC_AGE : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_AARC_AGE_CD_CatalogueReference;
+      GINB_MAIN_MOV : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_SURF_GINB_MAIN_MOV_CD_CatalogueReference;
+      TDEF_TYPE : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_SURF_TDEF_TYPE_CD_CatalogueReference;
+      TDEF_GEN_RELA : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_SURF_TDEF_GEN_RELA_CD_CatalogueReference;
+      Geometry : MANDATORY GeometryCHLV95_V1.MultiSurface;
+      UNIQUE UUID;
+    END GC_SURFACES;
+
+    CLASS GC_BEDROCK =
+      UUID : MANDATORY INTERLIS.UUIDOID;
+      KIND : MANDATORY GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_BEDROCK_KIND_CatalogueReference; 
+      MORE_INFO : TEXT*255;
+      SYMBOL : TEXT*10;
+      RBED_CHRONO_T : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_CHRONO_CD_CatalogueReference;
+      RBED_CHRONO_B : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_CHRONO_CD_CatalogueReference;
+      RBED_CHRONO_B_LOC : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_CHRONO_CD_CatalogueReference;
+      RBED_CHRONO_T_LOC : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_CHRONO_CD_CatalogueReference;
+      RBED_TECTO : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_TECTO_CD_CatalogueReference;
+      RBED_HARMOS_REV : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_HARMOS_REV_CD_CatalogueReference;
+      RBED_FM_HOMOG : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_BEDR_RBED_FM_HOMOG_CD_CatalogueReference;
+      RBED_BURIED_OUT : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_BOOLEAN_CD_CatalogueReference;
+      RBED_EXOTIC_ELE : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_BOOLEAN_CD_CatalogueReference;
+      RBED_ORIG_DESCR : TEXT*255;
+      RBED_COLOUR : TEXT*255;
+      RBED_INDEX : TEXT*255;
+      RBED_LITSTRAT_LINK : TEXT*255;
+      Geometry : MANDATORY GeometryCHLV95_V1.MultiSurface;
+      UNIQUE UUID;
+    END GC_BEDROCK;
+
+    CLASS GC_UNCO_DESPOSIT =
+      UUID : MANDATORY INTERLIS.UUIDOID;
+      KIND : MANDATORY GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_UNCO_DESPOSIT_KIND_CatalogueReference; 
+      MORE_INFO : TEXT*255;
+      SYMBOL : TEXT*10;
+      RUNC_CHRONO_T : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_CHRONO_CD_CatalogueReference;
+      RUNC_CHRONO_B : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_CHRONO_CD_CatalogueReference;
+      RUNC_LITHO : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_LITHO_UNCO_CD_CatalogueReference;
+      RUNC_LITSTRAT : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_LITSTRAT_UNCO_CD_CatalogueReference;
+      RUNC_HARMOS_REV : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_HARMOS_REV_CD_CatalogueReference;
+      RUNC_STRUCTUR : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_UN_DEP_RUNC_STRUCTUR_CD_CatalogueReference;
+      RUNC_MORPHOLO : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_UN_DEP_RUNC_MORPHOLO_CD_CatalogueReference;
+      RUNC_GLAC_TYP : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_UN_DEP_RUNC_GLAC_TYP_CD_CatalogueReference;
+      RUNC_THIN_COV : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_UN_DEP_RUNC_THIN_COV_CD_CatalogueReference;
+      RUNC_BURIED_OUT : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_BOOLEAN_CD_CatalogueReference;
+      RUNC_ORIG_DESCR : TEXT*255;
+      RUNC_REF_YEAR : TEXT*255;
+      RUNC_INDEX : TEXT*255;
+      Geometry : MANDATORY GeometryCHLV95_V1.MultiSurface;
+      UNIQUE UUID;
+    END GC_UNCO_DESPOSIT;
+
+    CLASS GC_EXPLOIT_GEOMAT_PT =
+      UUID : MANDATORY INTERLIS.UUIDOID;
+      KIND : MANDATORY GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_EXPLOIT_GEOMAT_PT_KIND_CatalogueReference; 
+      MORE_INFO : TEXT*255;
+      SYMBOL : TEXT*10;
+      AEXP_STATUS : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_EX_GEO_PNT_AEXP_STATUS_CD_CatalogueReference;
+      AEXP_TARG_MAT : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_EX_GEO_PNT_AEXP_TARG_MAT_CD_CatalogueReference;
+      AEXP_DEPTH_TOT : Double;
+      Geometry : MANDATORY GeometryCHLV95_V1.Coord2;
+      UNIQUE UUID;
+    END GC_EXPLOIT_GEOMAT_PT;
+
+    CLASS GC_FOSSILS =
+      UUID : MANDATORY INTERLIS.UUIDOID;
+      KIND : MANDATORY GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_FOSSILS_KIND_CatalogueReference; 
+      MORE_INFO : TEXT*255;
+      SYMBOL : TEXT*10;
+      LFOS_FOUND_IN : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_LITSTRAT_CD_CatalogueReference;
+      LFOS_DIVISION : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_FOSS_LFOS_DIVISION_CD_CatalogueReference;
+      LFOS_DAT_METH : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_FOSS_LFOS_DAT_METH_CD_CatalogueReference;
+      LFOS_STATUS : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_FOSS_LFOS_STATUS_CD_CatalogueReference;
+      LFOS_PROTECTED : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_BOOLEAN_CD_CatalogueReference;
+      Geometry : MANDATORY GeometryCHLV95_V1.Coord2;
+      UNIQUE UUID;
+    END GC_FOSSILS;
+
+    CLASS GC_POINT_OBJECTS =
+      UUID : MANDATORY INTERLIS.UUIDOID;
+      KIND : MANDATORY GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_POINT_OBJECTS_KIND_CatalogueReference; 
+      MORE_INFO : TEXT*255;
+      SYMBOL : TEXT*10;
+      RUNC_MAT_TYPE : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_LITHO_CD_CatalogueReference;
+      ABOR_FM_A : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_LITSTRAT_CD_CatalogueReference;
+      ABOR_FM_B : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_LITSTRAT_CD_CatalogueReference;
+      PSLO_FORMATIO : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_LITSTRAT_BED_CD_CatalogueReference;
+      AARC_EPOCH : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_AARC_EPOCH_CD_CatalogueReference;
+      AARC_PERIOD : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_AARC_PERIOD_CD_CatalogueReference;
+      AARC_AGE : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_AARC_AGE_CD_CatalogueReference;
+      AARC_TYPE : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_PNT_AARC_TYPE_CD_CatalogueReference;
+      ABOR_DRILL_MO : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_PNT_ABOR_DRILL_MO_CD_CatalogueReference;
+      ABOR_MAIN_TAR : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_PNT_ABOR_MAIN_TAR_CD_CatalogueReference;
+      ABOR_TARG_MAT : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_PNT_ABOR_TARG_MAT_CD_CatalogueReference;
+      ABOR_D_C_UNDERG : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_BOOLEAN_CD_CatalogueReference;
+      GKAR_ICE_CAVE : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_BOOLEAN_CD_CatalogueReference;
+      HCON_STATUS : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_PNT_HCON_STATUS_CD_CatalogueReference;
+      HCON_EPOCH : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_PNT_HCON_EPOCH_CD_CatalogueReference;
+      HSUR_STATUS : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_PNT_HSUR_STATUS_CD_CatalogueReference;
+      HSUR_FLOW_CON : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_PNT_HSUR_FLOW_CON_CD_CatalogueReference;
+      HSUR_TYPE : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_PNT_HSUR_TYPE_CD_CatalogueReference;
+      HSUR_DIS_LOCA : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_PNT_HSUR_DIS_LOCA_CD_CatalogueReference;
+      HSUR_COMBI : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_PNT_HSUR_COMBI_CD_CatalogueReference;
+      LANO_TYPE : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_PNT_LANO_TYPE_CD_CatalogueReference;
+      LRES_STATUS : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_PNT_LRES_STATUS_CD_CatalogueReference;
+      LRES_MATERIAL : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_PNT_LRES_MATERIAL_CD_CatalogueReference;
+      LTYP_STRATI : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_PNT_LTYP_STRATI_CD_CatalogueReference;
+      LTYP_ACCESSIBIL : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_BOOLEAN_CD_CatalogueReference;
+      LTYP_PROTECTED : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_BOOLEAN_CD_CatalogueReference;
+      MFOL_FOLD_TYP : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_PNT_MFOL_FOLD_TYP_CD_CatalogueReference;
+      MFOL_FOLD_FOR : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_PNT_MFOL_FOLD_FOR_CD_CatalogueReference;
+      MFOL_PHASE : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_PNT_MFOL_PHASE_CD_CatalogueReference;
+      MPLA_POLARITY : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_PNT_MPLA_POLARITY_CD_CatalogueReference;
+      MPLA_PHASE : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_PNT_MPLA_PHASE_CD_CatalogueReference;
+      MPLA_OB_DIP_SLO : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_BOOLEAN_CD_CatalogueReference;
+      PSLO_TYPE : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_PNT_PSLO_TYPE_CD_CatalogueReference;
+      RUNC_STATUS : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_PNT_RUNC_STATUS_CD_CatalogueReference;
+      RUNC_ROCK_TYP : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_PNT_RUNC_ROCK_TYP_CD_CatalogueReference;
+      RUNC_ROCK_SPE : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_PNT_RUNC_ROCK_SPE_CD_CatalogueReference;
+      RUNC_PROTECTED : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_BOOLEAN_CD_CatalogueReference;
+      TDEF_FOLD_TYP : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_PNT_TDEF_FOLD_TYP_CD_CatalogueReference;
+      TDEF_FOLD_FOR : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_PNT_TDEF_FOLD_FOR_CD_CatalogueReference;
+      ABOR_DEPTH_BEDR : Double;
+      ABOR_DEPTH_TOT : Double;
+      ABOR_DEPTH_FM_A : Double;
+      ABOR_DEPTH_FM_B : Double;
+      ABOR_DEPTH_WT : Double;
+      AZIMUTH : LongInteger;
+      DIP : LongInteger;
+      ABOR_REF_NUMBER : LongInteger;
+      ABOR_LINK : LongInteger;
+      HCON_DEPTH : Double;
+      HCON_DEPTH_WT : Double;
+      HCON_MEA_PERIOD : TEXT*255;
+      HSUR_TEMP : LongInteger;
+      HSUR_CHEMISTRY : TEXT*255;
+      LRES_CHEMISTRY : TEXT*255;
+      LTYP_NAME : TEXT*255;
+      MFOL_PHASE_REF : TEXT*255;
+      MPLA_PHASE_REF : TEXT*255;
+      PMOD_HEIGHT : Double;
+      PMOD_MEA_PERIOD : TEXT*255;
+      RUNC_ORIG_DESCR : TEXT*255;
+      LMIS_ORIG_ID : TEXT*255;
+      Geometry : MANDATORY GeometryCHLV95_V1.Coord2;
+      UNIQUE UUID;
+    END GC_POINT_OBJECTS;
+
+    CLASS GC_LINEAR_OBJECTS =
+      UUID : MANDATORY INTERLIS.UUIDOID;
+      KIND : MANDATORY GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_LINEAR_OBJECTS_KIND_CatalogueReference; 
+      MORE_INFO : TEXT*255;
+      SYMBOL : TEXT*10;
+      HPAL_CHRONO : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_CHRONO_CD_CatalogueReference;
+      LPRO_LITHO : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_LITHO_CD_CatalogueReference;
+      PCOB_FORMATIO : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_LITSTRAT_BED_CD_CatalogueReference;
+      AARC_EPOCH : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_AARC_EPOCH_CD_CatalogueReference;
+      AARC_PERIOD : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_AARC_PERIOD_CD_CatalogueReference;
+      AARC_AGE : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_AARC_AGE_CD_CatalogueReference;
+      AEXP_STATUS : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_LIN_AEXP_STATUS_CD_CatalogueReference;
+      GALL_AGE : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_LIN_GALL_AGE_CD_CatalogueReference;
+      GGLA_MORAI_MO : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_LIN_GGLA_MORAI_MO_CD_CatalogueReference;
+      GGLA_GLAC_TYP : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_LIN_GGLA_GLAC_TYP_CD_CatalogueReference;
+      GGLA_ICE_M_P : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_LIN_GGLA_ICE_M_P_CD_CatalogueReference;
+      GGLA_QUAT_STR : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_LIN_GGLA_QUAT_STR_CD_CatalogueReference;
+      HCON_COMBI : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_LIN_HCON_COMBI_CD_CatalogueReference;
+      HPAL_REL_AGE : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_LIN_HPAL_REL_AGE_CD_CatalogueReference;
+      HSUB_COMBI : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_LIN_HSUB_COMBI_CD_CatalogueReference;
+      LGEO_STATUS : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_LIN_LGEO_STATUS_CD_CatalogueReference;
+      LPRO_CONG_SPE : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_LIN_LPRO_CONG_SPE_CD_CatalogueReference;
+      LPRO_NAME_HORIZ : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_LIN_LPRO_NAME_HORIZ_CD_CatalogueReference;
+      PCOB_TYPE : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_LIN_PCOB_TYPE_CD_CatalogueReference;
+      PCOH_CONFINE : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_LIN_PCOH_CONFINE_CD_CatalogueReference;
+      PCOH_WA_TABLE : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_LIN_PCOH_WA_TABLE_CD_CatalogueReference;
+      TTEC_FAULT_MO : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_LIN_TTEC_FAULT_MO_CD_CatalogueReference;
+      TTEC_VERTI_MO : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_LIN_TTEC_VERTI_MO_CD_CatalogueReference;
+      TTEC_HORIZ_MO : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_LIN_TTEC_HORIZ_MO_CD_CatalogueReference;
+      TTEC_STATUS : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_LIN_TTEC_STATUS_CD_CatalogueReference;
+      TTEC_ACTIVITY : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_LIN_TTEC_ACTIVITY_CD_CatalogueReference;
+      TTEC_META_STA : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_LIN_TTEC_META_STA_CD_CatalogueReference;
+      TTEC_LIM_TECT_B : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_BOOLEAN_CD_CatalogueReference;
+      GGLA_REF_YEAR : LongInteger;
+      GGLA_SOURCE : TEXT*255;
+      HPAL_REF_YEAR : LongInteger;
+      HPAL_SOURCE : TEXT*255;
+      LPRO_ORIG_DESCR : TEXT*255;
+      LMIN_CHEMISTRY : TEXT*255;
+      PCOB_ALTITUDE : Double;
+      PCOH_ALTITUDE : Double;
+      TTEC_NAME : TEXT*255;
+      Geometry : MANDATORY GeometryCHLV95_V1.MultiLine;
+      UNIQUE UUID;
+    END GC_LINEAR_OBJECTS;
+
+    CLASS GC_EXPLOIT_GEOMAT_PLG =
+      UUID : MANDATORY INTERLIS.UUIDOID;
+      KIND : MANDATORY GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_EXPLOIT_GEOMAT_PLG_KIND_CatalogueReference; 
+      MORE_INFO : TEXT*255;
+      SYMBOL : TEXT*10;
+      AEXP_STATUS : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_EX_GEO_PLG_AEXP_STATUS_CD_CatalogueReference;
+      AEXP_TARG_MAT : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_EX_GEO_PLG_AEXP_TARG_MAT_CD_CatalogueReference;
+      Geometry : MANDATORY GeometryCHLV95_V1.MultiSurface;
+      UNIQUE UUID;
+    END GC_EXPLOIT_GEOMAT_PLG;
+
+    CLASS GC_LITSTRAT =
+      UUID : MANDATORY INTERLIS.UUIDOID;
+      GEOL_CODE : TEXT*20;
+      GEOL_CODE_INT : LongInteger;
+      GERMAN : TEXT*255;
+      FRENCH : TEXT*255;
+      UNIQUE UUID;
+    END GC_LITSTRAT;
+
+    CLASS GC_LITSTRAT_BED =
+      UUID : MANDATORY INTERLIS.UUIDOID;
+      GEOL_CODE : TEXT*20;
+      GEOL_CODE_INT : LongInteger;
+      GERMAN : TEXT*255;
+      FRENCH : TEXT*255;
+      UNIQUE UUID;
+    END GC_LITSTRAT_BED;
+
+    CLASS GC_SYSTEM =
+      UUID : MANDATORY INTERLIS.UUIDOID;
+      GEOL_CODE : TEXT*20;
+      GEOL_CODE_INT : LongInteger;
+      GERMAN : TEXT*255;
+      FRENCH : TEXT*255;
+      UNIQUE UUID;
+    END GC_SYSTEM;	
+
+    CLASS GC_COMPOSIT =
+      UUID : MANDATORY INTERLIS.UUIDOID;
+      GEOL_CODE : TEXT*20;
+      GEOL_CODE_INT : LongInteger;
+      GERMAN : TEXT*255;
+      FRENCH : TEXT*255;
+      UNIQUE UUID;
+    END GC_COMPOSIT;
+
+    CLASS GC_ADMIXTURE =
+      UUID : MANDATORY INTERLIS.UUIDOID;
+      GEOL_CODE : TEXT*20;
+      GEOL_CODE_INT : LongInteger;
+      GERMAN : TEXT*255;
+      FRENCH : TEXT*255;
+      UNIQUE UUID;
+    END GC_ADMIXTURE;
+
+    CLASS GC_CHARCAT =
+      UUID : MANDATORY INTERLIS.UUIDOID;
+      GEOL_CODE : TEXT*20;
+      GEOL_CODE_INT : LongInteger;
+      GERMAN : TEXT*255;
+      FRENCH : TEXT*255;
+      UNIQUE UUID;
+    END GC_CHARCAT;
+
+    CLASS GC_LITHO =
+      UUID : MANDATORY INTERLIS.UUIDOID;
+      GEOL_CODE : TEXT*20;
+      GEOL_CODE_INT : LongInteger;
+      GERMAN : TEXT*255;
+      FRENCH : TEXT*255;
+      UNIQUE UUID;
+    END GC_LITHO;
+
+    CLASS GC_BED_FORM_ATT =
+      UUID : MANDATORY INTERLIS.UUIDOID;
+      FMAT_META_MINERAL1 : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_MINERAL_CD_CatalogueReference;
+      FMAT_META_MINERAL2 : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_MINERAL_CD_CatalogueReference;
+      FMAT_META_MINERAL3 : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_MINERAL_CD_CatalogueReference;
+      FMAT_META_STR1 : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_META_STR_CD_CatalogueReference;
+      FMAT_META_STR2 : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_META_STR_CD_CatalogueReference;
+      FMAT_META_STR3 : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_META_STR_CD_CatalogueReference;
+      FMAT_SEDI_BEDDING1 : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_BEDDING_CD_CatalogueReference;
+      FMAT_SEDI_BEDDING2 : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_BEDDING_CD_CatalogueReference;
+      FMAT_SEDI_BOND_MAT : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_BOND_MAT_CD_CatalogueReference;
+      FMAT_SEDI_MAIN_COM : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_MAIN_COM_CD_CatalogueReference;
+      FMAT_SEDI_SECO_COM1 : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_SECO_COM_CD_CatalogueReference;
+      FMAT_SEDI_SECO_COM2 : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_SECO_COM_CD_CatalogueReference;
+      FMAT_SEDI_STR1 : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_SEDI_STR_CD_CatalogueReference;
+      FMAT_SEDI_STR2 : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_SEDI_STR_CD_CatalogueReference;
+      FMAT_SEDI_TEX1 : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_SEDI_TEX_CD_CatalogueReference;
+      FMAT_SEDI_TEX2 : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_SEDI_TEX_CD_CatalogueReference;
+      FMAT_IGNE_TEX : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_IGNE_TEX_CD_CatalogueReference;
+      FMAT_IGNE_GRAIN_SI : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_GRAIN_SI_CD_CatalogueReference;
+      FMAT_IGNE_AFFINITY : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_AFFINITY_CD_CatalogueReference;
+      FMAT_META_FULL_NAME : TEXT*255;
+      FMAT_LITSTRAT : GEOCOVER_Catalogues_V2_2.Catalog_GEOCOVER.GC_LITSTRAT_BED_CD_CatalogueReference;
+      UNIQUE UUID;
+    END GC_BED_FORM_ATT;
+
+    CLASS GC_LITHO_BED =
+      UUID : MANDATORY INTERLIS.UUIDOID;
+      GEOL_CODE : TEXT*20;
+      GEOL_CODE_INT : LongInteger;
+      GERMAN : TEXT*255;
+      FRENCH : TEXT*255;
+      UNIQUE UUID;
+    END GC_LITHO_BED;
+
+
+    /** Associations */
+
+    ASSOCIATION GC_FOR_ATT_GC_BEDR_FM_AT =
+      rFORM_ATT -- {1} GC_BED_FORM_ATT;
+      rGC_BEDROCK -- {*} GC_BEDROCK;
+    END GC_FOR_ATT_GC_BEDR_FM_AT;
+
+    ASSOCIATION GC_EX_GEO_PLG_EXP_UNIT_GC_LI =
+      rGC_EXPLOIT_GEOMAT_PLG_UUID -- {*} GC_EXPLOIT_GEOMAT_PLG;
+      rGC_LITSTRAT_UUID -- {*} GC_LITSTRAT;
+    END GC_EX_GEO_PLG_EXP_UNIT_GC_LI;
+
+    ASSOCIATION GC_EX_GEO_PNT_EXP_UNIT_GC_LI =
+      rGC_EXPLOIT_GEOMAT_PT_UUID -- {*} GC_EXPLOIT_GEOMAT_PT;
+      rGC_LITSTRAT_UUID -- {*} GC_LITSTRAT;
+    END GC_EX_GEO_PNT_EXP_UNIT_GC_LI;
+
+    ASSOCIATION GC_FOSS_SYSTEM_GC_SYSTEM =
+      rGC_FOSSILS_UUID -- {*} GC_FOSSILS;
+      rGC_SYSTEM_UUID -- {*} GC_SYSTEM;
+    END GC_FOSS_SYSTEM_GC_SYSTEM;
+
+    ASSOCIATION GC_UN_DEP_COMPOSIT_GC_COMPOS =
+      rGC_UNCO_DESPOSIT_UUID -- {*} GC_UNCO_DESPOSIT;
+      rGC_COMPOSIT_UUID -- {*} GC_COMPOSIT;
+    END GC_UN_DEP_COMPOSIT_GC_COMPOS;
+
+    ASSOCIATION GC_UN_DEP_ADMIXTUR_GC_ADMIXT =
+      rGC_UNCO_DESPOSIT_UUID -- {*} GC_UNCO_DESPOSIT;
+      rGC_ADMIXTURE_UUID -- {*} GC_ADMIXTURE;
+    END GC_UN_DEP_ADMIXTUR_GC_ADMIXT;
+
+    ASSOCIATION GC_UN_DEP_CHARACT_GC_CHARCAT =
+      rGC_UNCO_DESPOSIT_UUID -- {*} GC_UNCO_DESPOSIT;
+      rGC_CHARCAT_UUID -- {*} GC_CHARCAT;
+    END GC_UN_DEP_CHARACT_GC_CHARCAT;
+
+    ASSOCIATION GC_UN_DEP_MAT_TYPE_GC_LITHO =
+      rGC_UNCO_DESPOSIT_UUID -- {*} GC_UNCO_DESPOSIT;
+      rGC_LITHO_UUID -- {*} GC_LITHO;
+    END GC_UN_DEP_MAT_TYPE_GC_LITHO;
+
+    ASSOCIATION GC_BEDR_LITHO_GC_LITHO_BED =
+      rGC_BEDROCK_UUID -- {*} GC_BEDROCK;
+      rGC_LITHO_BED_UUID -- {*} GC_LITHO_BED;
+    END GC_BEDR_LITHO_GC_LITHO_BED;
+
+    ASSOCIATION GC_BEDR_LITSRAT_LOC_GC_LITST =
+      rGC_BEDROCK_UUID -- {*} GC_BEDROCK;
+      rGC_LITSTRAT_BED_UUID -- {*} GC_LITSTRAT_BED;
+    END GC_BEDR_LITSRAT_LOC_GC_LITST;
+	
+  END GEOCOVER;
+END GEOCOVER_LV95_V3_0.

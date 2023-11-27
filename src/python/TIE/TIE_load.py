@@ -89,6 +89,8 @@ def cropDEMextent(geotif, shapefile):
                shapefile.total_bounds[1],
                shapefile.total_bounds[2],
                shapefile.total_bounds[3])
+
+    print('bbox', bbox)
     gbbox = gpd.GeoDataFrame({'geometry': bbox}, index=[0], crs=shapefile.crs)
 
     def getFeatures(gdf):
@@ -96,6 +98,8 @@ def cropDEMextent(geotif, shapefile):
         return [json.loads(gdf.to_json())['features'][0]['geometry']]
 
     coords = getFeatures(gbbox)
+
+    print('coords', coords)
 
     DEM, out_trans = mask(geotif, coords, crop=True)
     z = DEM[0]

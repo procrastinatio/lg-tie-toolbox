@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 Created on Tue Apr 13 13:33:55 2021
@@ -56,7 +57,9 @@ BEDbig, TECbig, OMbig = TIEld.loadGeocover(GAsheet, GeocPath)
 DEMbig = TIEld.loadLKdem(sheet, DemFolderPath)
 
 extent = TIEld.createExtentPLG(x, y, BEDbig.crs)
+print('DEM extent', extent)
 DEM = TIEld.cropDEMextent(DEMbig, extent)
+print('DEM', DEM)
 del DEMbig
 
 BEDshp = TIEld.adaptSHAPE2DEM(BEDbig, DEM)
@@ -78,6 +81,15 @@ traces = TIEld.findNeighType(traces, BEDrst)
 
 traces = TIEcr.tie(traces, DEM['x'], DEM['y'], np.flipud(DEM['z']), seg=True)
 faults = TIEcr.tie(faults, DEM['x'], DEM['y'], np.flipud(DEM['z']), seg=True)
+
+trace = traces[0]
+s = trace.Segment[0]
+chord = s.Chords[0]
+
+print("trace", trace)
+print("segment", s)
+print("chord", chord, chord.vector, chord.alpha, chord.id)
+
 
 # # %% MANIPULATE TRACES AND SEGMENTS
 #

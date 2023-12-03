@@ -12,7 +12,7 @@ import glob
 from pathlib import Path, PurePath
 import tempfile
 
-from typing import Dict
+from typing import Dict, List, Tuple, Union
 
 import geopandas as gpd
 import numpy as np
@@ -25,19 +25,28 @@ from shapely.geometry import Polygon
 from shapely.geometry import box
 
 
-def adaptSHAPE2DEM(shapefile, DEM):
-    """ ADAPTS SHAPEFILE EXTENT TO DEM
-    loads shapefile and crops its extent according to the extent given by
-    the DEM.
-    
-    INPUT:
-    ---------
-    shapefile:  geopandas shapefile object 
-    DEM:        dicitonary of the DEM and coordinate data obtained with 
-                TIE_load.cropDEMextent
-    RETURNS:
-    ---------
-    clipped shapefile """
+def adaptSHAPE2DEM(shapefile: gpd.GeoDataFrame, DEM: Dict) -> gpd.GeoDataFrame:
+    """
+    Adapt a shapefile's extent to match the extent given by a DEM.
+
+    Parameters
+    ----------
+    shapefile : geopandas.GeoDataFrame
+        Geopandas shapefile object.
+    DEM : dict
+        Dictionary containing DEM and coordinate data obtained with TIE_load.cropDEMextent.
+
+    Returns
+    -------
+    geopandas.GeoDataFrame
+        Clipped shapefile.
+
+    Notes
+    -----
+    The DEM parameter should be a dictionary with the following keys:
+        - 'meta': Metadata of the DEM.
+        - 'z': DEM data.
+    """
 
     DEMmeta = DEM['meta']
     DEMtrans = DEMmeta['transform']
@@ -196,20 +205,23 @@ def extractTraces(TRmatrix, shape):
     return TRACE
 
 
-def findNeighType(TRACES, BEDrst):
-    """ FIND NEIGHBOR BEDROCK TYPES
-    extracts the TWO bedrock types stored in BEDrst, which form a bedrock 
-    inteface trace
 
-    INPUT
+def findNeighType(TRACES: List[TIEclass.trace_OBJ], BEDrst: np.ndarray) -> List[TIEclass.trace_OBJ]:
+    """
+    Extracts the TWO bedrock types stored in BEDrst, which form a bedrock interface trace.
+
+    Parameters
     ----------
-    BEDrst:     bedrock matrix (rasterized version of bedrock shapefile) 
-    TRACES:     list of trace_OBJ storing trace information of bedrock 
-                interface traces
-    OUTPUT
-    ----------
-    TRACES (same list) with added SECOND bedrock type defining a boundary
-    type """
+    TRACES : List[TIEclass.trace_OBJ]
+        List of trace_OBJ storing trace information of bedrock interface traces.
+    BEDrst : numpy.ndarray
+        Bedrock matrix (rasterized version of bedrock shapefile).
+
+    Returns
+    -------
+    List[TIEclass.trace_OBJ]
+        List of trace_OBJ with added SECOND bedrock type defining a boundary type.
+    """
 
     for T in TRACES:
         mid = int(round(np.size(T.index) / 2))
@@ -224,26 +236,27 @@ def findNeighType(TRACES, BEDrst):
                 ntype = BEDfl[k]
                 break
             else:
-                ntype = float("NaN")
+                ntype = float("NaN") #TODO: np.nan
         T.type = [rtype, ntype]
 
     return TRACES
 
 
-def identifyTRACE(BEDrst, FAULTS):
-    """ IDENTIFIES TRACES IN A BEDROCK MATRIX   
-    identifies traces in a bedrock matrix based on the bedrock distinction
-    and the fault traces already extracted and creates a new matrix (same
-    resolution) containing the traces only
-    
-    INPUT:
+def identifyTRACE(BEDrst: np.ndarray, FAULTS: List[TIEclass.trace_OBJ]) -> np.ndarray:
+    """
+    Identifies traces in a bedrock matrix based on the bedrock distinction and the fault traces.
+
+    Parameters
     ----------
-    BEDrst:     matrix with Bedrock data (see loadBedrock and rasterizeBedrock)  
-    FAULTS:     list of trace_OBJ containing FAULT information
-    
-    RETURNS:
-    ----------
-    TRmatrix:   matrix (size BEDrst) with trace information
+    BEDrst : numpy.ndarray
+        Matrix with Bedrock data (see loadBedrock and rasterizeBedrock).
+    FAULTS : List[TIEclass.trace_OBJ]
+        List of trace_OBJ containing FAULT information.
+
+    Returns
+    -------
+    numpy.ndarray
+        Matrix (same size as BEDrst) with trace information.
     """
 
     TRmatrix = np.zeros(np.shape(BEDrst)).flatten()
@@ -278,21 +291,23 @@ def identifyTRACE(BEDrst, FAULTS):
     return TRmatrix
 
 
-def loadGeocover(sheet, geoc_path, language="de"):
-    """ LOADS GEOCOVER DATA   
-    loads Geocover Data (all geology data) according to the Geocover structure
-    
-    INPUT:
+def loadGeocover(sheet: int, geoc_path: str, language: str = "de") -> Tuple[gpd.GeoDataFrame, gpd.GeoDataFrame, gpd.GeoDataFrame]:
+    """
+    Loads Geocover Data (all geology data) according to the Geocover structure.
+
+    Parameters
     ----------
-    sheet:      Identification number of LK sheet (Landeskarte 1.25'000)  
-    geoc_path:  Path to Geocover folder
-    language:   "de" for the german version (default), or "fr" for the French
-                version (optional parameter)
-    
-    RETURNS:
-    ----------
-    geopandas handle to shapefile of Bedrock_PLG.shp, Tectonic_Boundaries_L.shp
-    and Planar_Structures_PT.shp
+    sheet : int
+        Identification number of LK sheet (Landeskarte 1.25'000).
+    geoc_path : str
+        Path to Geocover folder.
+    language : str, optional
+        Language for the version ("de" for German, "fr" for French), default is "de".
+
+    Returns
+    -------
+    Tuple[geopandas.GeoDataFrame, geopandas.GeoDataFrame, geopandas.GeoDataFrame]
+        Geopandas handles to shapefiles of Bedrock_PLG.shp, Tectonic_Boundaries_L.shp, and Planar_Structures_PT.shp.
     """
 
     path_whole = geoc_path + "/GC-V-V2-" + str(sheet) + "/Data/SHP/" + language
@@ -307,18 +322,21 @@ def loadGeocover(sheet, geoc_path, language="de"):
     return BED, TEC, OM
 
 
-def loadLKdem(sheet, path_alti3D_folder):
-    """ LOADS GEOCOVER DATA   
-    loads DEM (swissALTI3D), glues the different patches together
-    
-    INPUT:
+def loadLKdem(sheet: int, path_alti3D_folder: str) -> Union[rst.DatasetReader, None]:
+    """
+    Loads DEM (swissALTI3D), gluing the different patches together.
+
+    Parameters
     ----------
-    sheet:          Identification number of LK sheet (Landeskarte 1:25'000)  
-    path_alti3d:    Path to swissALTI3D folder
-    
-    RETURNS:
-    ----------
-    rasterio handle to DEM of whole LK sheet (Landeskarte 1:25'000)
+    sheet : int
+        Identification number of LK sheet (Landeskarte 1:25'000).
+    path_alti3D_folder : str
+        Path to swissALTI3D folder.
+
+    Returns
+    -------
+    Union[rasterio.DatasetReader, None]
+        Rasterio handle to DEM of the whole LK sheet (Landeskarte 1:25'000), or None if loading fails.
     """
 
     search_criteria = "/swiss_" + str(sheet) + "_*.tif"

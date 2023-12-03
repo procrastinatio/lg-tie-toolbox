@@ -13,16 +13,21 @@ import numpy as np
 
 
 def angle2normal(azim, dip):
-    """ ANGLE to NORMAL
-    calculates the normal of a plane (or a set of planes) defined with 
-    orientational angles in degrees - dip azimuth and dip 
-    (no specific location). 
-     ----------
-    INPUT
-    azim, dip -> angles of azimuth (dip azimuth) and dip of plane.  
-     ----------
-    OUTPUT
-    normal    -> normal vector: normal = [normalx,normaly,normalz] """
+    """
+    Calculate the normal vector of a plane (or set of planes) defined with orientational angles in degrees.
+
+    Parameters
+    ----------
+    azim : float or array_like
+        Angles of azimuth (dip azimuth) in degrees.
+    dip : float or array_like
+        Dip angles of the plane(s) in degrees.
+
+    Returns
+    -------
+    numpy.ndarray
+        Normal vector of the plane(s) in the form [normalx, normaly, normalz].
+    """
 
     dip = np.array(dip) * np.pi / 180
     azim = np.array(azim) * np.pi / 180
@@ -39,41 +44,56 @@ def angle2normal(azim, dip):
 
 
 def angle2vect(trend, plunge):
-    """ ANGLE to VECTOR
-    calculates the directional vector (length = 1) from a line defined by 
-    angles - trend and plunge
-     ----------
-    INPUT:
-    trend, plunge -> angles of trend (plunge azimuth) and plunge of 
-    directional vector.  
-     ----------
-    OUTPUT
-    vx, vy, vz  -> coordinates of oriented vector """
+    """
+    Calculate the directional vector (length = 1) from a line defined by angles - trend and plunge.
 
+    Parameters
+    ----------
+    trend : float or array_like
+        Angles of trend (plunge azimuth) in degrees.
+    plunge : float or array_like
+        Plunge angles of the directional vector in degrees.
+
+    Returns
+    -------
+    tuple of numpy.ndarray
+        Coordinates of the oriented vector in the form (vx, vy, vz).
+    """
+
+    # Convert angles to radians
     trend = np.array(trend) * np.pi / 180
     plunge = np.array(plunge) * np.pi / 180
 
+    # Handle single values or arrays
     if np.size(trend) == 1:
         trend = [trend]
         plunge = [plunge]
 
+    # Calculate coordinates of the oriented vector
     vz = [-np.sin(pl) for pl in plunge]
     vx = [np.sin(trend[k]) * np.cos(plunge[k]) for k in range(np.size(trend))]
     vy = [np.cos(trend[k]) * np.cos(plunge[k]) for k in range(np.size(trend))]
 
-    return [np.array(vx).T, np.array(vy).T, np.array(vz).T]
+    # Return the coordinates as a tuple of numpy arrays
+    return np.array(vx).T, np.array(vy).T, np.array(vz).T
 
 
 def angleBtwVec(v1, v2):
-    """ ANGLE BETWEEN 2 VECTORS
-    small angle between two directional oriented vectors
-     ----------
-    INPUT
-      -> v1: first vector (x,y,z)
-      -> v2: second vector (x,y,z)
-     ----------
-    OUTPUT
-      -> angle: angle between the two vectors """
+    """
+    Calculate the small angle between two directional oriented vectors.
+
+    Parameters
+    ----------
+    v1 : array_like
+        First vector in the form (x, y, z).
+    v2 : array_like
+        Second vector in the form (x, y, z).
+
+    Returns
+    -------
+    float
+        Angle between the two vectors in degrees.
+    """
 
     if len(np.shape(v1)) > 1:
         v1n = np.array([j / np.linalg.norm(j) for j in v1])

@@ -8,8 +8,6 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath('../src/python/'))
 
-import renku_sphinx_theme
-
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
@@ -61,12 +59,16 @@ source_suffix = '.rst'
 # The master toctree document.
 master_doc = 'index'
 
+# sphinx.ext.autodoc
+autodoc_typehints = "description"
+autodoc_typehints_description_target = "documented"
+
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'groundwork'  #'alabaster'  # sphinx-rtd-theme
-html_theme_path = [renku_sphinx_theme.get_path()]
+html_theme = 'sphinx_rtd_theme'  #'alabaster'  # sphinx-rtd-theme
+#html_theme_path = [renku_sphinx_theme.get_path()]
 html_static_path = ['_static']
 
 

@@ -12,6 +12,8 @@ import glob
 from pathlib import Path, PurePath
 import tempfile
 
+from typing import Dict
+
 import geopandas as gpd
 import numpy as np
 import rasterio as rst
@@ -52,18 +54,27 @@ def adaptSHAPE2DEM(shapefile, DEM):
 
 
 def createExtentPLG(x, y, crs_shp):
-    """ CREATES EXTENT POLYGON
-    creates en georeferenced polygon (geopandas) covering the extent defined
+    """Creates Extent Polygon.
+
+    Creates a georeferenced polygon (geopandas) covering the extent defined
     with x- and y-coordinates.
-    
-    INPUT:
-    ---------
-    x,y:        coordinates of wanted polygon
-    crs_shp:    coordinate system of shape (geopandas object
-                                            )
-    RETURNS:
-    ---------
-    geopandas object (shapefile) with polygon extent """
+
+    Parameters
+    ----------
+    x : list of float
+        X-coordinates of the wanted polygon.
+
+    y : list of float
+        Y-coordinates of the wanted polygon.
+
+    crs_shp : geopandas.crs.CRS
+        Coordinate system of the shape (geopandas object).
+
+    Returns
+    -------
+    geopandas.geodataframe.GeoDataFrame
+        Geopandas object (shapefile) with the polygon extent.
+    """
 
     extent = gpd.GeoSeries(Polygon([(x[0], y[0]), (x[0], y[1]), (x[1], y[1]), (x[1], y[0])]))
     extent = extent.set_crs(crs_shp)
@@ -72,18 +83,28 @@ def createExtentPLG(x, y, crs_shp):
     return df_ext
 
 
-def cropDEMextent(geotif, shapefile):
-    """ CROP DEM WITH SHAPEFILE
-    crops DEM extent according to a PLG shapefile (here often extent shapefile).
-    
-    INPUT:
-    ---------
-    geotif:     handle to opened geotif (rasterio)
-    shapefile:  handle to opened shapefile (geopandas object)
+def cropDEMextent(geotif: rst.io.DatasetReader, shapefile: gpd.GeoDataFrame) -> dict:
+    """Crop DEM with Shapefile.
 
-    RETURNS:
-    ---------
-    dictionary containing coordinate data """
+    Crops the DEM extent according to a PLG shapefile (often an extent shapefile).
+
+    Parameters
+    ----------
+    geotif : rasterio.io.DatasetReader
+        Handle to an opened geotif (rasterio).
+
+    shapefile : gpd.GeoDataFrame
+        Handle to an opened shapefile (geopandas object).
+
+    Returns
+    -------
+    dict
+        Dictionary containing coordinate data.
+        - 'z': Numpy array representing the cropped DEM.
+        - 'x': Numpy array representing the x-coordinates.
+        - 'y': Numpy array representing the y-coordinates.
+        - 'meta': Metadata for the cropped DEM.
+    """
 
     bbox = box(shapefile.total_bounds[0],
                shapefile.total_bounds[1],
@@ -123,18 +144,24 @@ def cropDEMextent(geotif, shapefile):
 
 
 def extractTraces(TRmatrix, shape):
-    """ EXTRACT TRACES as TRACE OBJECTS
-    extracts individual, sorted traces (as a trace_OBJ) based on a trace matrix
-    
-    INPUT:
-    ---------
-    TRmatrix:   matrix containing the traces (binaryimage), in form of
-                it's trace matrix
-    shape:      'L' for polylines (e.g. faults), 'PLG' for traces extracted
-                from polygones (e.g. bedrock interface traces)
-    RETURNS:
-    ---------
-    traces:     list of trace objects (trace_OBJ) defined in TIE_classes. """
+    """Extract Traces as Trace Objects.
+
+    Extracts individual, sorted traces (as a trace_OBJ) based on a trace matrix.
+
+    Parameters
+    ----------
+    TRmatrix : numpy.ndarray
+        Matrix containing the traces (binary image), in the form of its trace matrix.
+
+    shape : str
+        'L' for polylines (e.g., faults), 'PLG' for traces extracted from polygons
+        (e.g., bedrock interface traces).
+
+    Returns
+    -------
+    list
+        List of trace objects (trace_OBJ) defined in TIE_classes.
+    """
 
     kind = np.unique(np.extract(np.isnan(TRmatrix) == False, TRmatrix))
     TRACE = []
@@ -323,21 +350,26 @@ def loadLKdem(sheet, path_alti3D_folder):
 
 
 def rasterizeSHP(shp, attribute, DEM):
-    """ RASTERIZES SHAPEFILE  
-    rasterizes a shapefile according to a specific attribute field value
-    
-    INPUT:
+    """Rasterizes Shapefile.
+
+    Rasterizes a shapefile according to a specific attribute field value.
+
+    Parameters
     ----------
-    shp:        opened geopandes handle to a shapefile  
-    attribute:  attribute in shapefile that will be needed to
-                distinguish between different types of tectonic boundaries or
-                litho-stratigraphic units. The attribute value must be a number.
-    DEM:        dictionary containing coordinates (x,y and z) of analyzed zone
-                (see crop2DEMextent)
-    
-    RETURNS:
-    ----------
-    raster matrix
+    shp : geopandas.geodataframe.GeoDataFrame
+        Opened geopandas handle to a shapefile.
+
+    attribute : str
+        Attribute in shapefile that will be used to distinguish between different types
+        of tectonic boundaries or litho-stratigraphic units. The attribute value must be a number.
+
+    DEM : dict
+        Dictionary containing coordinates (x, y, and z) of the analyzed zone (see crop2DEMextent).
+
+    Returns
+    -------
+    numpy.ndarray
+        Raster matrix.
     """
 
     KIND = getattr(shp, attribute)

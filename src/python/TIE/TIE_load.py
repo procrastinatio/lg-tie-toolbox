@@ -1,9 +1,6 @@
 # -*--- coding: utf-8 -*-
 """
-Created on Tue Apr 13 11:04:48 2021
-@author: Anna Rauch
-
-This script contains a set of general functions/methods that allow you 
+General functions/methods that allow you 
 to load the data and extract the traces in a way needed to perform a
 TIE-analysis.
 """
